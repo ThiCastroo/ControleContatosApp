@@ -30,7 +30,7 @@ public class Pessoa {
 	@Column(nullable = true)
 	private String uf;
 	@OneToMany
-	@JoinColumn(name = "contato_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "contato_id", referencedColumnName = "id")
 	private List<Contato> contato;
 	
 	public Pessoa() {}

@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import br.com.tgtdc.ContactManagement.model.Contato;
 
 @Repository
-public interface ContatoRepository extends JpaRepository<Contato, Long>{
-
-}
+public interface ContatoRepository extends JpaRepository<Contato, Long>{}

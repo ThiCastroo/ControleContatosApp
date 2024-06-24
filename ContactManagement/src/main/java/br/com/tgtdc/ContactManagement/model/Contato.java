@@ -27,7 +27,7 @@ public class Contato {
 	@Column(nullable = false)
 	private String contato;
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "pessoa_id", referencedColumnName = "id")
 	private Pessoa pessoa;
 	
 	public Contato() {}
