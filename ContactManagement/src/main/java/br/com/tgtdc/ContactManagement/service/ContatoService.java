@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIdDTO;
+import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIDDTO;
 import br.com.tgtdc.ContactManagement.model.Contato;
 import br.com.tgtdc.ContactManagement.model.Pessoa;
 import br.com.tgtdc.ContactManagement.repository.ContatoRepository;
@@ -72,20 +72,20 @@ public class ContatoService implements ContatoServiceInterface{
 	}
 
 	@Override
-	public List<ContatosPessoaIdDTO> findAllByPessoaId(Long idPessoa) {
+	public List<ContatosPessoaIDDTO> findAllByPessoaId(Long idPessoa) {
 		List<Object[]> listResultado = contatoRepository.findAllByPessoaId(idPessoa);
-		List<ContatosPessoaIdDTO> listAllByPessoaId = new ArrayList<ContatosPessoaIdDTO>();
+		List<ContatosPessoaIDDTO> listAllByPessoaId = new ArrayList<ContatosPessoaIDDTO>();
 		
 		for (Object[] obj : listResultado) {
-			ContatosPessoaIdDTO cDTO = returnDBContatosPessoaIdDTO(obj);
+			ContatosPessoaIDDTO cDTO = returnDBContatosPessoaIdDTO(obj);
 			listAllByPessoaId.add(cDTO);
 		}
 		return listAllByPessoaId;
 	}
 	
-	private ContatosPessoaIdDTO returnDBContatosPessoaIdDTO(Object[] resultado) {
+	private ContatosPessoaIDDTO returnDBContatosPessoaIdDTO(Object[] resultado) {
 		if (resultado != null) {
-			ContatosPessoaIdDTO contatosByPessoaId = new ContatosPessoaIdDTO(
+			ContatosPessoaIDDTO contatosByPessoaId = new ContatosPessoaIDDTO(
 					((Long)resultado[0]).longValue(),
 					((Integer)resultado[1]).intValue(),
 					(String)resultado[2],

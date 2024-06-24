@@ -1,6 +1,6 @@
 package br.com.tgtdc.ContactManagement.dto;
 
-public record ContatosPessoaIdDTO(
+public record ContatosPessoaIDDTO(
 		Long id, 
 		Integer tipoContato, 
 		String contato,

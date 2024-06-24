@@ -3,7 +3,7 @@ package br.com.tgtdc.ContactManagement.service.interfaces;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIdDTO;
+import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIDDTO;
 import br.com.tgtdc.ContactManagement.model.Contato;
 
 public interface ContatoServiceInterface {
@@ -13,6 +13,6 @@ public interface ContatoServiceInterface {
 	List<Contato> findAll();
 	Contato update(Contato contato);
 	void delete(Long id);
-	List<ContatosPessoaIdDTO> findAllByPessoaId(Long idPessoa);
+	List<ContatosPessoaIDDTO> findAllByPessoaId(Long idPessoa);
 	
 }
