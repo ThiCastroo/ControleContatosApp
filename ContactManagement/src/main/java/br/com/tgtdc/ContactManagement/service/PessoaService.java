@@ -1,16 +1,19 @@
 package br.com.tgtdc.ContactManagement.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.tgtdc.ContactManagement.dto.PessoaMalaDiretaDTO;
 import br.com.tgtdc.ContactManagement.model.Pessoa;
 import br.com.tgtdc.ContactManagement.repository.PessoaRepository;
 import br.com.tgtdc.ContactManagement.service.interfaces.PessoaServiceInterface;
 
+@Service
 public class PessoaService implements PessoaServiceInterface{
 
 	@Autowired
@@ -80,12 +83,7 @@ public class PessoaService implements PessoaServiceInterface{
 			PessoaMalaDiretaDTO pessoaMalaDiretaDTO = new PessoaMalaDiretaDTO(
 					((Long)resultado[0]).longValue(),
 					((String)resultado[1]),
-					((String)resultado[2]) + " - CEP: " + ((String)resultado[3]) + " -  Cidade: " +
-					((String)resultado[4]) + " - UF: " + ((String)resultado[5]), 
-					null, 
-					null, 
-					null, 
-					null
+					((String)resultado[2])
 					);
 			return pessoaMalaDiretaDTO;
 		} else {

@@ -3,6 +3,7 @@ package br.com.tgtdc.ContactManagement.model;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,15 +22,15 @@ public class Pessoa {
 	private Long id; 
 	@Column(nullable = false)
 	private String nome;
-	@Column(nullable = true)
+	
 	private String endereco;
-	@Column(nullable = true)
+	
 	private String cep; 
-	@Column(nullable = true)
+	
 	private String cidade;
-	@Column(nullable = true)
+	
 	private String uf;
-	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.PERSIST ,fetch = FetchType.EAGER)
 	private List<Contato> contatos;
 	
 	public Pessoa() {}

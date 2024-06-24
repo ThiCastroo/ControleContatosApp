@@ -1,11 +1,13 @@
 package br.com.tgtdc.ContactManagement.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIdDTO;
 import br.com.tgtdc.ContactManagement.model.Contato;
 import br.com.tgtdc.ContactManagement.model.Pessoa;
 import br.com.tgtdc.ContactManagement.repository.ContatoRepository;
@@ -67,5 +69,30 @@ public class ContatoService implements ContatoServiceInterface{
 	@Override
 	public void delete(Long id) {
 		contatoRepository.deleteById(id);
+	}
+
+	@Override
+	public List<ContatosPessoaIdDTO> findAllByPessoaId(Long id) {
+		List<Object[]> listResultado = contatoRepository.findAllByPessoaId(id);
+		List<ContatosPessoaIdDTO> listAllByPessoaId = new ArrayList<ContatosPessoaIdDTO>();
+		
+		for (Object[] obj : listResultado) {
+			ContatosPessoaIdDTO cDTO = returnDBProdutoSimplesDTO(obj);
+			listAllByPessoaId.add(cDTO);
+		}
+		return listAllByPessoaId;
+	}
+	
+	private ContatosPessoaIdDTO returnDBProdutoSimplesDTO(Object[] resultado) {
+		if (resultado != null) {
+			ContatosPessoaIdDTO contatosByPessoaId = new ContatosPessoaIdDTO(
+					((Long)resultado[0]).longValue(),
+					((Integer)resultado[1]).intValue(),
+					(String)resultado[2],
+					((Long)resultado[3]).longValue());
+			return contatosByPessoaId;
+		}else {
+			return null;
+		}
 	}
 }
