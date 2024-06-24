@@ -3,12 +3,31 @@ package br.com.tgtdc.ContactManagement.model;
 import java.util.Objects;
 
 import br.com.tgtdc.ContactManagement.model.enums.TipoContatoEnum;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "tb_contato")
 public class Contato {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Enumerated(EnumType.ORDINAL)
+	@Column(nullable = false)
 	private TipoContatoEnum tipoContato;
+	@Column(nullable = false)
 	private String contato;
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id", referencedColumnName = "id", nullable = false)
 	private Pessoa pessoa;
 	
 	public Contato() {}
@@ -23,24 +42,31 @@ public class Contato {
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public TipoContatoEnum getTipoContato() {
 		return tipoContato;
 	}
+	
 	public void setTipoContato(TipoContatoEnum tipoContato) {
 		this.tipoContato = tipoContato;
 	}
+	
 	public String getContato() {
 		return contato;
 	}
+	
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
+	
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
+	
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
