@@ -72,18 +72,18 @@ public class ContatoService implements ContatoServiceInterface{
 	}
 
 	@Override
-	public List<ContatosPessoaIdDTO> findAllByPessoaId(Long id) {
-		List<Object[]> listResultado = contatoRepository.findAllByPessoaId(id);
+	public List<ContatosPessoaIdDTO> findAllByPessoaId(Long idPessoa) {
+		List<Object[]> listResultado = contatoRepository.findAllByPessoaId(idPessoa);
 		List<ContatosPessoaIdDTO> listAllByPessoaId = new ArrayList<ContatosPessoaIdDTO>();
 		
 		for (Object[] obj : listResultado) {
-			ContatosPessoaIdDTO cDTO = returnDBProdutoSimplesDTO(obj);
+			ContatosPessoaIdDTO cDTO = returnDBContatosPessoaIdDTO(obj);
 			listAllByPessoaId.add(cDTO);
 		}
 		return listAllByPessoaId;
 	}
 	
-	private ContatosPessoaIdDTO returnDBProdutoSimplesDTO(Object[] resultado) {
+	private ContatosPessoaIdDTO returnDBContatosPessoaIdDTO(Object[] resultado) {
 		if (resultado != null) {
 			ContatosPessoaIdDTO contatosByPessoaId = new ContatosPessoaIdDTO(
 					((Long)resultado[0]).longValue(),

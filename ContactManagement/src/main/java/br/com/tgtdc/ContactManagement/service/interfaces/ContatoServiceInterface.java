@@ -13,6 +13,6 @@ public interface ContatoServiceInterface {
 	List<Contato> findAll();
 	Contato update(Contato contato);
 	void delete(Long id);
-	List<ContatosPessoaIdDTO> findAllByPessoaId(Long id);
+	List<ContatosPessoaIdDTO> findAllByPessoaId(Long idPessoa);
 	
 }

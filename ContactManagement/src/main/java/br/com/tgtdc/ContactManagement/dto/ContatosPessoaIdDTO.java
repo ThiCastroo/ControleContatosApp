@@ -4,5 +4,4 @@ public record ContatosPessoaIdDTO(
 		Long id, 
 		Integer tipoContato, 
 		String contato,
-		Long pessoa_id
-		) {}
+		Long idPessoa) {}

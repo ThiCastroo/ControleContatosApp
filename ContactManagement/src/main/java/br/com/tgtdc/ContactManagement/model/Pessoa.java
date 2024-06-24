@@ -1,12 +1,11 @@
 package br.com.tgtdc.ContactManagement.model;
 
 import java.util.List;
+
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,23 +15,29 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_pessoa")
 public class Pessoa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; 
+	private Long id;
+	
 	@Column(nullable = false)
 	private String nome;
 	
+	@Column(nullable = true)
 	private String endereco;
 	
-	private String cep; 
+	@Column(nullable = true)
+	private String cep;
 	
+	@Column(nullable = true)
 	private String cidade;
 	
+	@Column(nullable = true)
 	private String uf;
-	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.PERSIST ,fetch = FetchType.EAGER)
-	private List<Contato> contatos;
 	
+	@OneToMany(mappedBy = "pessoa")
+	private List<Contato> contatos;
+
 	public Pessoa() {}
 
 	public Pessoa(Long id, String nome, String endereco, String cep, String cidade, String uf, List<Contato> contatos) {
@@ -49,51 +54,51 @@ public class Pessoa {
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getEndereco() {
 		return endereco;
 	}
-	
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
+
 	public String getCep() {
 		return cep;
 	}
-	
+
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
+
 	public String getCidade() {
 		return cidade;
 	}
-	
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	
+
 	public String getUf() {
 		return uf;
 	}
-	
+
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
+
 	public List<Contato> getContatos() {
 		return contatos;
 	}
@@ -121,8 +126,7 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [Id: " + this.id + ", Nome: " + this.nome + ", Endereco: " + this.endereco + 
-				", CEP: " + this.cep + ", Cidade: " + this.cidade + ", UF: " + this.uf + 
-				", Contatos: " + this.contatos + "]";
+		return "Pessoa [Id: " + this.id + ", Nome: " + this.nome + ", Endereco: " + this.endereco + ", CEP: " + this.cep
+				+ ", Cidade: " + this.cidade + ", UF: " + this.uf + ", Contatos: " + this.contatos + "]";
 	}
 }
