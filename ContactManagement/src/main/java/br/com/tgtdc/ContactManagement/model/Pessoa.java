@@ -5,10 +5,10 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -29,13 +29,12 @@ public class Pessoa {
 	private String cidade;
 	@Column(nullable = true)
 	private String uf;
-	@OneToMany
-	@JoinColumn(name = "contato_id", referencedColumnName = "id")
-	private List<Contato> contato;
+	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER)
+	private List<Contato> contatos;
 	
 	public Pessoa() {}
 
-	public Pessoa(Long id, String nome, String endereco, String cep, String cidade, String uf, List<Contato> contato) {
+	public Pessoa(Long id, String nome, String endereco, String cep, String cidade, String uf, List<Contato> contatos) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -43,7 +42,7 @@ public class Pessoa {
 		this.cep = cep;
 		this.cidade = cidade;
 		this.uf = uf;
-		this.contato = contato;
+		this.contatos = contatos;
 	}
 
 	public Long getId() {
@@ -94,12 +93,12 @@ public class Pessoa {
 		this.uf = uf;
 	}
 	
-	public List<Contato> getContato() {
-		return contato;
+	public List<Contato> getContatos() {
+		return contatos;
 	}
 
-	public void setContato(List<Contato> contato) {
-		this.contato = contato;
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
 	}
 
 	@Override
@@ -123,6 +122,6 @@ public class Pessoa {
 	public String toString() {
 		return "Pessoa [Id: " + this.id + ", Nome: " + this.nome + ", Endereco: " + this.endereco + 
 				", CEP: " + this.cep + ", Cidade: " + this.cidade + ", UF: " + this.uf + 
-				", Contato: " + this.contato + "]";
+				", Contatos: " + this.contatos + "]";
 	}
 }

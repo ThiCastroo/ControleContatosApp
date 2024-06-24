@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.tgtdc.ContactManagement.model.Contato;
+import br.com.tgtdc.ContactManagement.model.Pessoa;
 import br.com.tgtdc.ContactManagement.repository.ContatoRepository;
 import br.com.tgtdc.ContactManagement.repository.PessoaRepository;
 import br.com.tgtdc.ContactManagement.service.interfaces.ContatoServiceInterface;
@@ -21,31 +22,50 @@ public class ContatoService implements ContatoServiceInterface{
 
 	@Override
 	public Contato save(Contato contato) {
-		// TODO Auto-generated method stub
-		return null;
+		if (contato.getPessoa().getId() != null) {
+			Optional<Pessoa> findPessoa = pessoaRepository.findById(contato.getPessoa().getId());
+			
+			if (!findPessoa.isEmpty()) {
+				contato.setPessoa(findPessoa.get());
+				return contatoRepository.save(contato);
+			} else {
+				System.out.println("Pessoa não encontrada com o id: " + contato.getPessoa().getId());
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public Optional<Contato> findById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return contatoRepository.findById(id);
 	}
 
 	@Override
 	public List<Contato> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return contatoRepository.findAll();
 	}
 
 	@Override
 	public Contato update(Contato contato) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Contato> findContato = contatoRepository.findById(contato.getId());
+		
+		if (findContato.isPresent()) {
+			Contato updateContato = findContato.get();
+			
+			updateContato.setTipoContato(contato.getTipoContato());
+			updateContato.setContato(contato.getContato());
+			updateContato.setPessoa(contato.getPessoa());
+			
+			return contatoRepository.save(updateContato);
+		} else {
+			return save(contato);
+		}
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
-	}	
+		contatoRepository.deleteById(id);
+	}
 }
