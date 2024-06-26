@@ -84,7 +84,7 @@ public class ContatoResource {
 	
 	@Operation(summary = "Lista todos os Contatos de uma Pessoa")
 	@GetMapping("/pessoa/{idPessoa}")
-	public ResponseEntity<List<ContatosPessoaIDDTO>> findByIdMalaDireta(@PathVariable Long idPessoa) {
+	public ResponseEntity<List<ContatosPessoaIDDTO>> findAllByPessoaId(@PathVariable Long idPessoa) {
 		List<ContatosPessoaIDDTO> contatosPessoaIdDTO = contatoService.findAllByPessoaId(idPessoa);
 		
 		if(contatosPessoaIdDTO == null) {
