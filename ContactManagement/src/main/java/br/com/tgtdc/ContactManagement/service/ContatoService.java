@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIDDTO;
+import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIdDTO;
 import br.com.tgtdc.ContactManagement.model.Contato;
 import br.com.tgtdc.ContactManagement.model.Pessoa;
 import br.com.tgtdc.ContactManagement.repository.ContatoRepository;
@@ -27,7 +27,7 @@ public class ContatoService implements ContatoServiceInterface{
 		if (contato.getPessoa().getId() != null) {
 			Optional<Pessoa> findPessoa = pessoaRepository.findById(contato.getPessoa().getId());
 			
-			if (!findPessoa.isEmpty()) {
+			if (findPessoa.isPresent()) {
 				contato.setPessoa(findPessoa.get());
 				return contatoRepository.save(contato);
 			} else {
@@ -58,7 +58,6 @@ public class ContatoService implements ContatoServiceInterface{
 			
 			updateContato.setTipoContato(contato.getTipoContato());
 			updateContato.setContato(contato.getContato());
-			updateContato.setPessoa(contato.getPessoa());
 			
 			return contatoRepository.save(updateContato);
 		} else {
@@ -72,20 +71,20 @@ public class ContatoService implements ContatoServiceInterface{
 	}
 
 	@Override
-	public List<ContatosPessoaIDDTO> findAllByPessoaId(Long idPessoa) {
+	public List<ContatosPessoaIdDTO> findAllByPessoaId(Long idPessoa) {
 		List<Object[]> listResultado = contatoRepository.findAllByPessoaId(idPessoa);
-		List<ContatosPessoaIDDTO> listAllByPessoaId = new ArrayList<ContatosPessoaIDDTO>();
+		List<ContatosPessoaIdDTO> listAllByPessoaId = new ArrayList<ContatosPessoaIdDTO>();
 		
 		for (Object[] obj : listResultado) {
-			ContatosPessoaIDDTO cDTO = returnDBContatosPessoaIdDTO(obj);
+			ContatosPessoaIdDTO cDTO = returnDBContatosPessoaIdDTO(obj);
 			listAllByPessoaId.add(cDTO);
 		}
 		return listAllByPessoaId;
 	}
 	
-	private ContatosPessoaIDDTO returnDBContatosPessoaIdDTO(Object[] resultado) {
+	private ContatosPessoaIdDTO returnDBContatosPessoaIdDTO(Object[] resultado) {
 		if (resultado != null) {
-			ContatosPessoaIDDTO contatosByPessoaId = new ContatosPessoaIDDTO(
+			ContatosPessoaIdDTO contatosByPessoaId = new ContatosPessoaIdDTO(
 					((Long)resultado[0]).longValue(),
 					((Integer)resultado[1]).intValue(),
 					(String)resultado[2],

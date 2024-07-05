@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIDDTO;
+import br.com.tgtdc.ContactManagement.dto.ContatosPessoaIdDTO;
 import br.com.tgtdc.ContactManagement.model.Contato;
 import br.com.tgtdc.ContactManagement.service.ContatoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -66,6 +66,7 @@ public class ContatoResource {
 	@Operation(summary = "Atualiza o registro de um Contato existente por ID")
 	@PutMapping("/{id}")
 	public ResponseEntity<Contato> update(@PathVariable Long id, @RequestBody Contato contato){
+		contato.setId(id);
 		Contato updateContato = contatoService.update(contato);
 		
 		if(updateContato == null) {
@@ -84,8 +85,8 @@ public class ContatoResource {
 	
 	@Operation(summary = "Lista todos os Contatos de uma Pessoa")
 	@GetMapping("/pessoa/{idPessoa}")
-	public ResponseEntity<List<ContatosPessoaIDDTO>> findAllByPessoaId(@PathVariable Long idPessoa) {
-		List<ContatosPessoaIDDTO> contatosPessoaIdDTO = contatoService.findAllByPessoaId(idPessoa);
+	public ResponseEntity<List<ContatosPessoaIdDTO>> findAllByPessoaId(@PathVariable Long idPessoa) {
+		List<ContatosPessoaIdDTO> contatosPessoaIdDTO = contatoService.findAllByPessoaId(idPessoa);
 		
 		if(contatosPessoaIdDTO == null) {
 			return ResponseEntity.notFound().build();

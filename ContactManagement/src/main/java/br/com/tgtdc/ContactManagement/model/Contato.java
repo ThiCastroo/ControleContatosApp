@@ -30,7 +30,7 @@ public class Contato {
 	private String contato;
 	
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id", referencedColumnName = "id")
+	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
 
 	public Contato() {}
@@ -94,6 +94,6 @@ public class Contato {
 	@Override
 	public String toString() {
 		return "Contato [Id: " + this.id + ", Tipo de Contato: " + this.tipoContato + ", Contato: " + this.contato
-				+ ", Pessoa: " + this.pessoa + "]";
+				+ ", PessoaId: " + this.pessoa + "]";
 	}
 }

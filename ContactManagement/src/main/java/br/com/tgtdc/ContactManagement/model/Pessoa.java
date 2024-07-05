@@ -2,6 +2,7 @@ package br.com.tgtdc.ContactManagement.model;
 
 import java.util.List;
 
+
 import java.util.Objects;
 
 import jakarta.persistence.Column;
