@@ -45,7 +45,7 @@ mvn spring-boot:run
 Este aplicativo utiliza JWT para autenticação. 
 
 1. **Obter o Token:** Use a API de token disponível no Swagger para obter o token. Forneça seu nome de usuário e senha.
-2. **Acessar o Swagger:** Abra seu navegador e vá para [http://localhost:8080/swagger-ui/index.html]. Lá você encontrará a interface do Swagger para testar e documentar os endpoints da aplicação.
+2. **Acessar o Swagger:** Abra seu navegador e vá para http://localhost:8080/swagger-ui/index.html. Lá você encontrará a interface do Swagger para testar e documentar os endpoints da aplicação.
 3. **Autorizar no Swagger:** Adicione o token na seção de autorização do Swagger.
 4. **Validade do Token:** O token é válido por 2 horas. Após esse período, obtenha um novo token.
 
