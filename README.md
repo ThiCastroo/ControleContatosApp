@@ -19,7 +19,7 @@ Clone o repositório e navegue até a pasta do projeto:
 
 ```bash
 git clone https://github.com/ThiCastroo/ControleContatosApp.git
-cd ControleContatosApp
+cd ControleContatosApp/ContactManagement
 ```
 
 ### 📦 Dependências
