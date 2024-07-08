@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @Configuration
@@ -16,8 +17,8 @@ public class OpenApiConfig {
 	public OpenAPI customOpenApi() {
 		return new OpenAPI()
 				.components(
-						new Components().addSecuritySchemes("basicScheme",
-								new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")
+						new Components().addSecuritySchemes("bearerAuth",
+								new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
 								)
 						)
 				.info(
@@ -30,7 +31,8 @@ public class OpenApiConfig {
 										.url("https://github.com/ThiCastroo/ControleContatosApp")
 										)
 							.version("0.0.1-SNAPSHOT")
-						);
+						)
+				.addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
 	}
 	
 }
